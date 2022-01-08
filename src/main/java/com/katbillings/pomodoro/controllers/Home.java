@@ -32,4 +32,9 @@ public class Home {
         return "timer";
     }
 
+    @GetMapping("history")
+    public String history() {
+        return "history";
+    }
+
 }

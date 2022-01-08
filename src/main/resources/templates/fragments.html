@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <header>
+        <a href="login">Login</a>
+        <h1>Title</h1>
+        <a href="/login">Login</a>
+        <nav th:fragment="navigation">
+            <li><a href="/">Home</a></li>
+            <li><a href="/timer">Timer</a></li>
+            <li><a href="/history">History</a></li><br><br>
+        </nav>
+    </header>
+</body>
+</html>

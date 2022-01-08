@@ -6,7 +6,9 @@
 </head>
 <body>
    <header>
+       <a href="login">Login</a>
       <h1>Pomodoro</h1>
+       <nav th:replace="fragments :: navigation"></nav>
    </header>
    <p>Welcome to this website! Here you can track how many pomodoro blocks you complete over time,
        in general and on specific tags that you create. A pomodoro block is 25 minutes you spend focused
@@ -14,6 +16,8 @@
        instead. You can read more about the technique
        <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">here</a>. To get started, please create
        an account or login.</p>
-   <button>Create an account</button>
+   <form action="/create-account">
+       <input type="submit" value="Create Account" />
+   </form>
 </body>
 </html>
