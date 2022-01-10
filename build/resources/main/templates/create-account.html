@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Create Account</title>
@@ -7,6 +7,7 @@
 <body>
     <header>
         <h1>Create Account</h1>
+        <nav th:replace="fragments :: navigation"></nav>
     </header>
     <form>
         <label for="username">Username:</label><br>

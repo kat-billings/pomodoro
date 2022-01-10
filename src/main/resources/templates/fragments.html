@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
     <header>
-        <a href="login">Login</a>
+        <div th:fragment="logout">
+            <div sec:authorize="hasRole('USER')">
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Sign Out"/>
+                </form>
+            </div>
+        </div>
         <h1>Title</h1>
         <a href="/login">Login</a>
         <nav th:fragment="navigation">

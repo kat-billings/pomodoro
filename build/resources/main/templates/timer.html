@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
     <header>
+        <div th:replace="fragments :: logout"></div>
+        <a href="login">Login</a>
         <h1>Timer</h1>
+        <nav th:replace="fragments :: navigation"></nav>
     </header>
-    <p>Timer to be added.</p>
-    <p>Tags to be added.</p>
+    <p>Timer to be implemented.</p>
+    <p>Tags to be implemented.</p>
 </body>
 </html>
