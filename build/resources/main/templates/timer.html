@@ -5,12 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-    <header>
-        <div th:replace="fragments :: logout"></div>
-        <a href="login">Login</a>
-        <h1>Timer</h1>
-        <nav th:replace="fragments :: navigation"></nav>
-    </header>
+    <header th:replace="fragments :: header"></header>
     <p>Timer to be implemented.</p>
     <p>Tags to be implemented.</p>
 </body>

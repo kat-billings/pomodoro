@@ -5,15 +5,24 @@
     <title>Home</title>
 </head>
 <body>
-   <header th:replace="fragments :: header"></header>
-   <p>Welcome to this website! Here you can track how many pomodoro blocks you complete over time,
-       in general and on specific tags that you create. A pomodoro block is 25 minutes you spend focused
-       on a task. Afterwards, you take a five-minute break. Every fourth block, you take a 20-minute break
-       instead. You can read more about the technique
-       <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">here</a>. To get started, please create
-       an account or login.</p>
-   <form action="/create-account">
-       <input type="submit" value="Create Account" />
-   </form>
+    <header th:replace="fragments :: header"></header>
+    <div sec:authorize="isAnonymous()">
+        <p>Welcome to this website! Here you can track how many pomodoro blocks you complete over time,
+        in general and on specific tags that you create. A pomodoro block is 25 minutes you spend focused
+        on a task. Afterwards, you take a five-minute break. Every fourth block, you take a 20-minute break
+        instead. You can read more about the technique
+        <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">here</a>. To get started, please create
+        an account or login.</p>
+        <form action="/create-account">
+            <input type="submit" value="Create Account" />
+        </form>
+    </div>
+    <div sec:authorize ="hasRole('USER')">
+        <p>Welcome back.</p>
+        <p>You have 0 blocks to go today to meet your daily goal.</p>
+        <form action="/timer">
+            <input type="submit" value="Start Timer!" />
+        </form>
+    </div>
 </body>
 </html>

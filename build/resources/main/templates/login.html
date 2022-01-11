@@ -5,11 +5,7 @@
     <title>Login</title>
 </head>
 <body>
-<header>
-    <div th:replace="fragments :: logout"></div>
-    <h1>Login</h1>
-    <nav th:replace="fragments :: navigation"></nav>
-</header>
+<header th:replace="fragments :: header"></header>
 <div th:if="${param.error}">
     Invalid username and password.
 </div>
