@@ -11,6 +11,7 @@
                 <form th:action="@{/logout}" method="post">
                     <input type="submit" value="Logout"/>
                 </form>
+                <p> 0 / 0 blocks completed today</p>
             </div>
             <div sec:authorize="isAnonymous()">
                 <form action="/login">
