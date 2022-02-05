@@ -3,10 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        #breakButton {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <header th:replace="fragments :: header"></header>
-    <p>Timer to be implemented.</p>
+    <button onclick="timer(1)" class="work">Start Timer</button>
+    <div id="breakButton">
+        <button onclick="timer(5)" class="break">Start Break</button>
+    </div>
+    <p>Time Left: </p>
+    <p id="demo"></p>
     <p>Tags to be implemented.</p>
+
+<script>
+    function timer(time){
+        var start = new Date().getTime();
+
+        var x = setInterval(function() {
+            var countDownDate = new Date(start + (time * 60 * 1000));;
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "Good job!";
+                  if (document.getElementById("breakButton").style.display === "none") {
+                    document.getElementById("breakButton").style.display = "block";
+                  } else {
+                    document.getElementById("breakButton").style.display = "none";
+                  }
+            }
+        }, 1000);
+    }
+</script>
+
 </body>
 </html>

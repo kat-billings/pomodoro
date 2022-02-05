@@ -6,13 +6,29 @@
 </head>
 <body>
     <header th:replace="fragments :: header"></header>
-    <form>
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br>
-        <label for="goal">Daily Goal: </label>
-        <input type="text" id="goal" name="goal" style="width: 15px;"><p style="display: inline;"> blocks</p><br><br>
+
+    <form method="post">
+        <div class="form-group">
+            <label>Username:<br>
+                <input th:field="${user.username}" name="username"><br>
+            </label>
+            <p th:errors="${user.username}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Password:<br>
+                <input th:field="${user.password}" name="password"><br>
+            </label>
+            <p th:errors="${user.password}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Daily Goal:
+                <input th:field="${user.goal}" name="goal" style="width: 15px;"><p style="display: inline;"> blocks</p><br><br>
+            </label>
+            <p th:errors="${user.goal}"></p>
+        </div>
+
         <input type="submit" value="Create Account">
     </form>
 </body>
