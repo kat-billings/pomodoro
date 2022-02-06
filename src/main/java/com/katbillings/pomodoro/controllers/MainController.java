@@ -38,7 +38,7 @@ public class MainController {
         }
         userRepository.save(newUser);
         model.addAttribute("createAccountSuccessful","Account created! Please login.");
-        return "login";
+        return "redirect:/login";
     }
 
     @GetMapping("login")

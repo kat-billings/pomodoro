@@ -2,11 +2,15 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
     <header th:replace="fragments :: header"></header>
-    <p>Timer to be implemented.</p>
+    <button onclick="timer(1, 'workButton')" class="work" id="workButton">Start Timer</button>
+    <button onclick="timer(1, 'breakButton')" class="break" id="breakButton">Start Break</button>
+    <p>Time Left: </p>
+    <p id="time"></p>
     <p>Tags to be implemented.</p>
+    <script type="text/javascript" th:src="@{js/timer.js}"></script>
 </body>
 </html>

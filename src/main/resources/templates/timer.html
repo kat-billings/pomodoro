@@ -2,50 +2,15 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        #breakButton {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
     <header th:replace="fragments :: header"></header>
-    <button onclick="timer(1)" class="work">Start Timer</button>
-    <div id="breakButton">
-        <button onclick="timer(5)" class="break">Start Break</button>
-    </div>
+    <button onclick="timer(1, 'workButton')" class="work" id="workButton">Start Timer</button>
+    <button onclick="timer(1, 'breakButton')" class="break" id="breakButton">Start Break</button>
     <p>Time Left: </p>
-    <p id="demo"></p>
+    <p id="time"></p>
     <p>Tags to be implemented.</p>
-
-<script>
-    function timer(time){
-        var start = new Date().getTime();
-
-        var x = setInterval(function() {
-            var countDownDate = new Date(start + (time * 60 * 1000));;
-            var now = new Date().getTime();
-            var distance = countDownDate - now;
-
-
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
-
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("demo").innerHTML = "Good job!";
-                  if (document.getElementById("breakButton").style.display === "none") {
-                    document.getElementById("breakButton").style.display = "block";
-                  } else {
-                    document.getElementById("breakButton").style.display = "none";
-                  }
-            }
-        }, 1000);
-    }
-</script>
-
+    <script type="text/javascript" th:src="@{js/timer.js}"></script>
 </body>
 </html>
