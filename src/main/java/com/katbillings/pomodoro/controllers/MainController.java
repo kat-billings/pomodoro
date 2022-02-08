@@ -14,31 +14,11 @@ import javax.validation.Valid;
 
 @Controller
 public class MainController {
-    @Autowired
-    private UserRepository userRepository;
 
     @GetMapping
     public String home(Model model) {
         model.addAttribute("title","Home");
         return "index";
-    }
-
-    @GetMapping("create-account")
-    public String createAccount(Model model) {
-        model.addAttribute("title","Create Account");
-        model.addAttribute(new User());
-        return "create-account";
-    }
-
-    @PostMapping("create-account")
-    public String processCreateAccount(@ModelAttribute @Valid User newUser, Errors errors, Model model) {
-        if(errors.hasErrors()) {
-            model.addAttribute("title","Create Account");
-            return "create-account";
-        }
-        userRepository.save(newUser);
-        model.addAttribute("createAccountSuccessful","Account created! Please login.");
-        return "redirect:/login";
     }
 
     @GetMapping("login")

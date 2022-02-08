@@ -1,34 +1,43 @@
 package com.katbillings.pomodoro.models;
 
+import com.example.demo.model.Role;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import java.util.Objects;
+import java.util.Collection;
 
 @Entity
-@Table(name = "register")
+@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue
-    private Long user_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(nullable = false, unique = true, length = 20)
     private String username;
 
-    @Column(nullable = false, length = 20)
     private String password;
 
     private int goal;
 
-    public User(String username, String password, int goal) {
-        this();
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "history", referencedColumnName = "id")
+    private Collection<History> history;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<com.example.demo.model.Role> roles;
+
+    public User(String username, String password, int goal, Collection<com.example.demo.model.Role> roles) {
         this.username = username;
         this.password = password;
         this.goal = goal;
+        this.roles = roles;
     }
-
-    public User() {}
 
     public String getUsername() {
         return username;
@@ -54,21 +63,19 @@ public class User {
         this.goal = goal;
     }
 
-    @Override
-    public String toString() {
-        return username;
+    public Collection<History> getHistory() {
+        return history;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return user_id == user.user_id;
+    public void setHistory(Collection<History> history) {
+        this.history = history;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(user_id);
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 }
