@@ -17,8 +17,8 @@
             <input type="submit" value="Create Account" />
         </form>
     </div>
-    <div sec:authorize ="hasRole('USER')">
-        <p>Welcome back.</p>
+    <div sec:authorize ="isAuthenticated()">
+        <p>Welcome back!</p>
         <p>You have 0 blocks to go today to meet your daily goal.</p>
         <form action="/timer">
             <input type="submit" value="Start Timer!" />

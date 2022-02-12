@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.katbillings.pomodoro.models;
 
 import javax.persistence.*;
 
@@ -11,9 +11,12 @@ public class Role {
     private Long id;
     private String name;
 
+    public Role() {}
+
     public Role(String name) {
         this.name = name;
     }
+
 
     public Long getId() {
         return id;

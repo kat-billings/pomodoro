@@ -2,23 +2,34 @@ package com.katbillings.pomodoro.service;
 
 import com.katbillings.pomodoro.data.UserRepository;
 import com.katbillings.pomodoro.dto.UserRegistrationDto;
-import com.katbillings.pomodoro.models.History;
+import com.katbillings.pomodoro.models.Role;
 import com.katbillings.pomodoro.models.User;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     private UserRepository userRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Autowired
+    @Lazy
+    private BCryptPasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserRepository userRepository) {
         super();
@@ -27,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(UserRegistrationDto registrationDto) {
-        User user = new User(registrationDto.getUsername(), registrationDto.getPassword(), registrationDto.getGoal(), Arrays.asList(new com.example.demo.model.Role("USER"));
+        User user = new User(registrationDto.getUsername(), passwordEncoder.encode(registrationDto.getPassword()), registrationDto.getGoal(), Arrays.asList(new Role("USER")));
         return userRepository.save(user);
     }
 
@@ -40,7 +51,7 @@ public class UserServiceImpl implements UserService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
     }
 
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<com.example.demo.model.Role> roles){
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 

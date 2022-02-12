@@ -7,11 +7,14 @@
 <body>
     <header th:fragment="header">
         <div>
-            <div sec:authorize ="hasRole('USER')">
+            <div sec:authorize ="isAuthenticated()">
                 <form th:action="@{/logout}" method="post">
                     <input type="submit" value="Logout"/>
                 </form>
-                <p> 0 / 0 blocks completed today</p>
+                <div th:object="${user}">
+                    <p>Hello, <span sec:authentication="principal.username">User</span>!</p>
+                    <p> 0 / <span th:text="*{goal}">0</span> blocks completed today</p>
+                </div>
             </div>
             <div sec:authorize="isAnonymous()">
                 <form action="/login">

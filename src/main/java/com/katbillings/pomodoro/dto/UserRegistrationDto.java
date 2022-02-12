@@ -1,22 +1,22 @@
 package com.katbillings.pomodoro.dto;
 
-import com.katbillings.pomodoro.models.History;
+//import com.katbillings.pomodoro.models.History;
 
 public class UserRegistrationDto {
     private String username;
     private String password;
     private int goal;
-    private History history;
+//    private History history;
 
     public UserRegistrationDto() {
 
     }
 
-    public UserRegistrationDto(String username, String password, int goal, History history) {
+    public UserRegistrationDto(String username, String password, int goal) {
         this.username = username;
         this.password = password;
         this.goal = goal;
-        this.history = history;
+//        this.history = history;
     }
 
     public String getUsername() {
@@ -43,11 +43,11 @@ public class UserRegistrationDto {
         this.goal = goal;
     }
 
-    public History getHistory() {
-        return history;
-    }
-
-    public void setHistory(History history) {
-        this.history = history;
-    }
+//    public History getHistory() {
+//        return history;
+//    }
+//
+//    public void setHistory(History history) {
+//        this.history = history;
+//    }
 }

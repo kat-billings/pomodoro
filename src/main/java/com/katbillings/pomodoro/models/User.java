@@ -1,7 +1,5 @@
 package com.katbillings.pomodoro.models;
 
-import com.example.demo.model.Role;
-
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -19,9 +17,8 @@ public class User {
 
     private int goal;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "history", referencedColumnName = "id")
-    private Collection<History> history;
+//    @JoinColumn(name = "history", referencedColumnName = "id")
+//    private Collection<History> history;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -30,9 +27,11 @@ public class User {
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
-    private Collection<com.example.demo.model.Role> roles;
+    private Collection<Role> roles;
 
-    public User(String username, String password, int goal, Collection<com.example.demo.model.Role> roles) {
+    public User() {}
+
+    public User(String username, String password, int goal, Collection<Role> roles) {
         this.username = username;
         this.password = password;
         this.goal = goal;
@@ -63,13 +62,13 @@ public class User {
         this.goal = goal;
     }
 
-    public Collection<History> getHistory() {
-        return history;
-    }
-
-    public void setHistory(Collection<History> history) {
-        this.history = history;
-    }
+//    public Collection<History> getHistory() {
+//        return history;
+//    }
+//
+//    public void setHistory(Collection<History> history) {
+//        this.history = history;
+//    }
 
     public Collection<Role> getRoles() {
         return roles;
