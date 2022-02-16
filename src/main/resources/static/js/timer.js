@@ -1,3 +1,7 @@
+function hideButton() {
+        document.getElementById('submitted').style.display = 'none';
+}
+
 function timer(time, id){
     document.getElementById(id).style.display = "none";
     var start = new Date().getTime();
@@ -15,11 +19,12 @@ function timer(time, id){
            if (distance < 0) {
                 clearInterval(x);
                 if (id === "workButton") {
-                    document.getElementById("time").innerHTML = "Good job!";
-                    document.getElementById("breakButton").style.display = "block";
+                    document.getElementById("time").innerHTML = "Done!";
+                    document.getElementById("break").style.display = "block";
+                    document.getElementById("submitted").style.display = "block";
                 } else {
                     document.getElementById("time").innerHTML = "Start a new block!";
-                    document.getElementById("workButton").style.display = "block";
+                    window.location.replace("/timer");
                 }
            }
         }, 1000);

@@ -3,10 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>History</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
     <header th:replace="fragments :: header"></header>
-    <a href="/edit-goal">Edit daily goal.</a>
-    <p>History to be implemented.</p>
+    <article>
+    <a class="link" href="/edit-goal">Edit daily goal.</a>
+    <a class="link" href="/create-tag">Create tag.</a>
+    <ul>
+        <li th:each="tag : ${tags}">
+            <td><a th:text="${tag.name}" th:href="'/history?tagId=' + ${tag.id}"></a></td>
+        </li>
+    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Blocks Completed</th>
+            </tr>
+        </thead>
+        <tr th:each="history : ${histories}">
+            <td th:text="${history.date}"></td>
+            <td th:text="${history.counter}"></td>
+        </tr>
+    </table>
+    </article>
 </body>
 </html>

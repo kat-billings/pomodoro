@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
     <header th:replace="fragments :: header"></header>
-    <form>
+    <article>
+    <div th:if="${param.success}">
+        <p>Your goal has been updated.</p>
+    </div>
+    <form th:action="@{/edit-goal}" method="post">
         <label for="goal">Daily Goal: </label>
-        <input type="text" id="goal" name="goal" style="width: 15px;"><p style="display: inline;"> blocks</p><br><br>
+        <input type="text" id="goal" name="goal" required style="width: 15px;"><p style="display: inline;"> blocks</p><br><br>
         <input type="submit" value="Save Changes">
     </form>
+    </article>
 </body>
 </html>

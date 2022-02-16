@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
+</head>
+<body>
+    <header th:replace="fragments :: header"></header>
+    <article>
+    <p th:if="${param.success}">Tag created!</p>
+    <form th:action="@{/create-tag}" method="post" th:object="${tag}">
+        <div>
+            <label for="name">
+                Name
+            </label>
+            <input id="name" th:field="*{name}" required autofocus="autofocus">
+        </div>
+
+        <input type="submit" value="Create Tag">
+    </form>
+    </article>
+</body>
+</html>

@@ -6,11 +6,40 @@
 </head>
 <body>
     <header th:replace="fragments :: header"></header>
-    <button onclick="timer(1, 'workButton')" class="work" id="workButton">Start Timer</button>
-    <button onclick="timer(1, 'breakButton')" class="break" id="breakButton">Start Break</button>
-    <p>Time Left: </p>
+    <article>
+
+
+    <p th:unless="${param.break}">Before starting, <a href="/create-tag">create some tags.</a></p>
+    <button th:if="${param.break}" onclick="timer(1, 'break')">Start Break</button>
+    <button th:if="${param.break}" onclick="timer(1, 'break')">Start Long Break</button>
+
+    <button th:unless="${param.break}" onclick="timer(1, 'workButton')" class="work" id="workButton">Start Timer</button>
+
+    <div id="break">
+        <p>Block completed!</p>
+
+        <form method="post" id="submitted" th:action="@{/timer}">
+            <p>Please choose a tag for this block:</p>
+
+            <div>
+                <label for="tag">Test</label>
+                <select id="tag" th:field="${dailyLog.tag}">
+                    <option th:each="tag : ${tags}"
+                            th:value="${tag.id}"
+                            th:text="${tag.name}"
+                    ></option>
+                </select>
+            </div>
+
+            <input type="submit" value="Submit Block">
+        </form>
+    </div>
+
+    <div>
     <p id="time"></p>
-    <p>Tags to be implemented.</p>
+    </div>
+
     <script type="text/javascript" th:src="@{js/timer.js}"></script>
+    </article>
 </body>
 </html>

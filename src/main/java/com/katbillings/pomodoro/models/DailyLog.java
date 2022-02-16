@@ -1,30 +1,25 @@
 package com.katbillings.pomodoro.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "daily_log")
-public class DailyLog {
+public class DailyLog extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @ManyToOne
+    private History  history;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "tag_id", referencedColumnName = "id")
+    @ManyToOne
     private Tag tag;
 
     public DailyLog(Tag tag) {
         this.tag = tag;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public DailyLog() {};
 
     public Tag getTag() {
         return tag;
@@ -32,5 +27,13 @@ public class DailyLog {
 
     public void setTag(Tag tag) {
         this.tag = tag;
+    }
+
+    public History getHistory() {
+        return history;
+    }
+
+    public void setHistory(History history) {
+        this.history = history;
     }
 }

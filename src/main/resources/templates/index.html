@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
     <header th:replace="fragments :: header"></header>
+    <article>
     <div sec:authorize="isAnonymous()">
         <p>Welcome to this website! Here you can track how many pomodoro blocks you complete over time,
         in general and on specific tags that you create. A pomodoro block is 25 minutes you spend focused
@@ -24,5 +26,6 @@
             <input type="submit" value="Start Timer!" />
         </form>
     </div>
+    </article>
 </body>
 </html>

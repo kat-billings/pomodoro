@@ -1,15 +1,13 @@
 package com.katbillings.pomodoro.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends AbstractEntity{
 
     private String username;
 
@@ -17,8 +15,8 @@ public class User {
 
     private int goal;
 
-//    @JoinColumn(name = "history", referencedColumnName = "id")
-//    private Collection<History> history;
+    @OneToMany(mappedBy = "user")
+    private final List<History> history = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -54,6 +52,10 @@ public class User {
         this.password = password;
     }
 
+    public List<History> getHistory() {
+        return history;
+    }
+
     public int getGoal() {
         return goal;
     }
@@ -62,14 +64,6 @@ public class User {
         this.goal = goal;
     }
 
-//    public Collection<History> getHistory() {
-//        return history;
-//    }
-//
-//    public void setHistory(Collection<History> history) {
-//        this.history = history;
-//    }
-
     public Collection<Role> getRoles() {
         return roles;
     }
@@ -77,4 +71,5 @@ public class User {
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
+
 }

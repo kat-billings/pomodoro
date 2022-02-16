@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
     <header th:fragment="header">
-        <div>
-            <div sec:authorize ="isAuthenticated()">
-                <form th:action="@{/logout}" method="post">
+        <div class="wrap">
+            <div  sec:authorize ="isAuthenticated()">
+                <form class="headerButton right" th:action="@{/logout}" method="post">
                     <input type="submit" value="Logout"/>
                 </form>
-                <div th:object="${user}">
+                <div  class="left" th:object="${user}">
                     <p>Hello, <span sec:authentication="principal.username">User</span>!</p>
-                    <p> 0 / <span th:text="*{goal}">0</span> blocks completed today</p>
+                    <p> <span th:text="${counter}">0</span> / <span th:text="*{goal}">0</span> blocks completed today</p>
                 </div>
             </div>
-            <div sec:authorize="isAnonymous()">
-                <form action="/login">
+            <div class="right" sec:authorize="isAnonymous()">
+                <form class="headerButton" action="/login">
                     <input type="submit" value="Login" />
                 </form>
             </div>

@@ -1,3 +1,107 @@
-#breakButton {
+* {
+margin: ;
+padding: 0;
+}
+
+#break {
     display: none;
 }
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+ul, nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+nav {
+      position: relative;
+      top: -20px;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+h1 {
+      position: relative;
+      top: -30px;
+      padding: 24px;
+      margin: 0;
+      text-align: center;
+      background-color: coral;
+      color: white;
+      font-size: 72px;
+}
+form, p {
+      left-padding: 12px;
+      top-padding: 2px;
+      margin: 0;
+}
+
+input[type=text] {
+  padding: 12px 20px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+input[type=submit], button {
+  padding: 12px;
+  color: white;
+  background-color: coral;
+   border: none;
+   text-decoration: none;
+}
+
+a {
+   text-decoration: none;
+   color: coral;
+}
+
+.left, .right {
+    display: inline-block;
+    width: 100%;
+    vertical-align: bottom;
+}
+
+.right {
+    text-align: right;
+}
+
+.left {
+    text-align: left;
+    position: relative;
+    top: -40px;
+}
+
+article {
+      position: relative;
+      top: -10px;
+}
+#time {
+   font-size: 144px;
+   text-align: center;
+}
+
+.link {
+    font-size: 18px;
+    padding: 14px 16px;
+}
+
